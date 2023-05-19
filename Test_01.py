@@ -1,6 +1,5 @@
-from zeep import Client
+from checkText import checkText
 
-client = Client("https://speller.yandex.net/services/spellservice?WSDL")
-result = client.service.checktext
 
-assert result == 'Vfvf'
+def test_step1(right_word, wrong_word):
+    assert right_word in checkText(wrong_word)
