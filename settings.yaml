@@ -1,4 +1,5 @@
 wsdl: "https://speller.yandex.net/services/spellservice?WSDL"
-address: "https://test-stand.gb.ru/gateway/login"
+url: "https://test-stand.gb.ru/gateway/login"
 username: userapi0
 password: ab2dcf5f0d
+usertoken: 29451abc20bb4f44e6171a40d4888cf5
