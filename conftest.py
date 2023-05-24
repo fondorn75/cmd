@@ -25,7 +25,7 @@ def login():
 
 @pytest.fixture()
 def search_text():
-    return 'rgerg'
+    return 'Игуана'
 
 
 @pytest.fixture()

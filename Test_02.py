@@ -6,7 +6,7 @@ with open("settings.yaml") as f:
 
 
 def posts(token):
-    response = requests.get(user_set['posts'], headers={'X-Auth-Token': token}, params={'owner': 'notMe'})
+    response = requests.get(user_set['posts'], headers={'X-Auth-Token': token}, params={'owner': 'notMe', 'page': 1})
     listTitle = []
     for i in response.json()['data']:
         listTitle.append(i['title'])
