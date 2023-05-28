@@ -1,28 +1,13 @@
 import pytest
 import yaml
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 
 with open("testdata.yaml") as f:
     testdata = yaml.safe_load(f)
-
-
-@pytest.fixture()
-def x_selector1():
-    return """//*[@id="login"]/div[1]/label/input"""
-
-
-@pytest.fixture()
-def x_selector2():
-    return """//*[@id="login"]/div[2]/label/input"""
-
-
-@pytest.fixture()
-def btn_selector():
-    return "button"
-
-
-@pytest.fixture()
-def x_selector3():
-    return """//*[@id="app"]/main/div/div/div[2]/h2"""
+    browser = testdata["browser"]
 
 
 @pytest.fixture()
@@ -31,46 +16,25 @@ def answer_code():
 
 
 @pytest.fixture()
-def x_selector4():
-    return """//*[@id="app"]/main/nav/ul/li[3]/a"""
-
-
-@pytest.fixture()
 def answer_code2():
     return f'Hello, {testdata["username"]}'
 
 
 @pytest.fixture()
-def x_selector5():
-    return "create-btn"
-
-
-@pytest.fixture()
-def title():
-    return """//*[@id="create-item"]/div/div/div[1]/div/label/input"""
-
-
-@pytest.fixture()
-def description():
-    return """//*[@id="create-item"]/div/div/div[2]/div/label/span/textarea"""
-
-
-@pytest.fixture()
-def content():
-    return """//*[@id="create-item"]/div/div/div[3]/div/label/span/textarea"""
-
-
-@pytest.fixture()
-def btn_save():
-    return """//*[@id="create-item"]/div/div/div[7]/div/button"""
-
-
-@pytest.fixture()
-def x_selector6():
-    return """//*[@id="app"]/main/div/div[1]/h1"""
-
-
-@pytest.fixture()
 def answer_code3():
     return "Hello World"
+
+
+@pytest.fixture(scope="session")
+def browser():
+    if browser == "firefox":
+        service = Service(executable_path=GeckoDriverManager().install())
+        options = webdriver.FirefoxOptions()
+        driver = webdriver.Firefox(service=service, options=options)
+    else:
+        service = Service(executable_path=ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        driver = webdriver.Chrome(service=service, options=options)
+    yield driver
+    driver.quit()
 
