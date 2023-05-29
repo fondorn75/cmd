@@ -2,6 +2,7 @@ from BaseApp import BasePage
 from selenium.webdriver.common.by import By
 
 
+
 class TestSearchLocators:
     LOCATOR_LOGIN_FIELD = (By.XPATH, """//*[@id="login"]/div[1]/label/input""")
     LOCATOR_PASS_FIELD = (By.XPATH, """//*[@id="login"]/div[2]/label/input""")
@@ -14,6 +15,11 @@ class TestSearchLocators:
     LOCATOR_CONTENT = (By.XPATH, """//*[@id="create-item"]/div/div/div[3]/div/label/span/textarea""")
     LOCATOR_SAVE_POST_BTN = (By.XPATH, """//*[@id="create-item"]/div/div/div[7]/div/button""")
     LOCATOR_HEADER_FIELD = (By.XPATH, """//*[@id="app"]/main/div/div[1]/h1""")
+    LOCATOR_CONTACT_US = (By.XPATH, """//*[@id="app"]/main/nav/ul/li[2]/a""")
+    LOCATOR_YOUR_NAME = (By.XPATH, """//*[@id="contact"]/div[1]/label/input""")
+    LOCATOR_YOUR_EMAIL = (By.XPATH, """//*[@id="contact"]/div[2]/label/input""")
+    LOCATOR_YOUR_CONTENT = (By.XPATH, """//*[@id="contact"]/div[3]/label/span/textarea""")
+    LOCATOR_CONTACT_US_BTN = (By.XPATH, """//*[@id="contact"]/div[4]/button""")
 
 
 class OperationsHelper(BasePage):
@@ -62,3 +68,28 @@ class OperationsHelper(BasePage):
     def get_post_header_text(self):
         header_field = self.find_element(TestSearchLocators.LOCATOR_HEADER_FIELD, time=3)
         return header_field.text
+
+    def click_contact_us_button(self):
+        self.find_element(TestSearchLocators.LOCATOR_CONTACT_US).click()
+
+    def enter_your_name(self, word):
+        login_field = self.find_element(TestSearchLocators.LOCATOR_YOUR_NAME)
+        login_field.clear()
+        login_field.send_keys(word)
+
+    def enter_your_email(self, word):
+        login_field = self.find_element(TestSearchLocators.LOCATOR_YOUR_EMAIL)
+        login_field.clear()
+        login_field.send_keys(word)
+
+    def enter_your_content(self, word):
+        login_field = self.find_element(TestSearchLocators.LOCATOR_YOUR_CONTENT)
+        login_field.clear()
+        login_field.send_keys(word)
+
+    def click_send_contact_us_button(self):
+        self.find_element(TestSearchLocators.LOCATOR_CONTACT_US_BTN).click()
+
+    def get_alert_text(self):
+        alert = self.driver.switch_to.alert
+        return alert.text()

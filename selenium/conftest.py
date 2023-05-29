@@ -25,6 +25,11 @@ def answer_code3():
     return "Hello World"
 
 
+@pytest.fixture()
+def answer_code4():
+    return "Form successfully submitted"
+
+
 @pytest.fixture(scope="session")
 def browser():
     if browser == "firefox":

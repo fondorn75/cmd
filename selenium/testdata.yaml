@@ -7,3 +7,7 @@ password: ab2dcf5f0d
 title: 'Hello World'
 description: 'New post for pytest in python'
 content: 'New post for pytest in python'
+your_name: dmitrii
+your_email: test@mail.ru
+your_content: 'Verification email for support'
+
