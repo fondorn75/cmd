@@ -112,5 +112,4 @@ class OperationsHelper(BasePage):
     def get_alert_text(self):
         text = self.driver.switch_to.alert.text
         logging.info(f"We find '{text}' in alert field")
-        self.driver.switch_to.alert.accept()
         return text
