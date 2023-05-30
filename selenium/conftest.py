@@ -7,7 +7,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 with open("testdata.yaml") as f:
     testdata = yaml.safe_load(f)
-    browser = testdata["browser"]
+
+browser = testdata["browser"]
 
 
 @pytest.fixture()
