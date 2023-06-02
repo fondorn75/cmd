@@ -1,115 +1,168 @@
 from BaseApp import BasePage
 from selenium.webdriver.common.by import By
 import logging
+import yaml
+
+with open("locators.yaml") as f:
+    locators = yaml.safe_load(f)
 
 
 class TestSearchLocators:
-    LOCATOR_LOGIN_FIELD = (By.XPATH, """//*[@id="login"]/div[1]/label/input""")
-    LOCATOR_PASS_FIELD = (By.XPATH, """//*[@id="login"]/div[2]/label/input""")
-    LOCATOR_LOGIN_BTN = (By.CSS_SELECTOR, "button")
-    LOCATOR_ERROR_FIELD = (By.XPATH, """//*[@id="app"]/main/div/div/div[2]/h2""")
-    LOCATOR_HEADER_LABEL = (By.XPATH, """//*[@id="app"]/main/nav/ul/li[3]/a""")
-    LOCATOR_NEW_POST_BTN = (By.ID, "create-btn")
-    LOCATOR_TITLE = (By.XPATH, """//*[@id="create-item"]/div/div/div[1]/div/label/input""")
-    LOCATOR_DESCRIPTION = (By.XPATH, """//*[@id="create-item"]/div/div/div[2]/div/label/span/textarea""")
-    LOCATOR_CONTENT = (By.XPATH, """//*[@id="create-item"]/div/div/div[3]/div/label/span/textarea""")
-    LOCATOR_SAVE_POST_BTN = (By.XPATH, """//*[@id="create-item"]/div/div/div[7]/div/button""")
-    LOCATOR_HEADER_FIELD = (By.XPATH, """//*[@id="app"]/main/div/div[1]/h1""")
-    LOCATOR_CONTACT_US = (By.XPATH, """//*[@id="app"]/main/nav/ul/li[2]/a""")
-    LOCATOR_YOUR_NAME = (By.XPATH, """//*[@id="contact"]/div[1]/label/input""")
-    LOCATOR_YOUR_EMAIL = (By.XPATH, """//*[@id="contact"]/div[2]/label/input""")
-    LOCATOR_YOUR_CONTENT = (By.XPATH, """//*[@id="contact"]/div[3]/label/span/textarea""")
-    LOCATOR_CONTACT_US_BTN = (By.XPATH, """//*[@id="contact"]/div[4]/button""")
+    ids = dict()
+    for i in locators['xpath'].keys():
+        ids[i] = (By.XPATH, locators['xpath'][i])
+    for i in locators['css'].keys():
+        ids[i] = (By.CSS_SELECTOR, locators['css'][i])
 
 
 class OperationsHelper(BasePage):
     def enter_login(self, word):
-        logging.info(f"Send {word} to element {TestSearchLocators.LOCATOR_LOGIN_FIELD[1]}")
-        login_field = self.find_element(TestSearchLocators.LOCATOR_LOGIN_FIELD)
-        login_field.clear()
-        login_field.send_keys(word)
+        logging.debug(f"Send {word} to element {TestSearchLocators.ids['LOCATOR_LOGIN_FIELD']}")
+        login_field = self.find_element(TestSearchLocators.ids['LOCATOR_LOGIN_FIELD'])
+        if login_field:
+            login_field.clear()
+            login_field.send_keys(word)
+        else:
+            logging.error('Field Login not found')
 
     def enter_pass(self, word):
-        logging.info(f"Send {word} to element {TestSearchLocators.LOCATOR_PASS_FIELD[1]}")
-        login_field = self.find_element(TestSearchLocators.LOCATOR_PASS_FIELD)
-        login_field.clear()
-        login_field.send_keys(word)
+        logging.debug(f"Send {word} to element {TestSearchLocators.ids['LOCATOR_PASS_FIELD']}")
+        password_field = self.find_element(TestSearchLocators.ids['LOCATOR_PASS_FIELD'])
+        if password_field:
+            password_field.clear()
+            password_field.send_keys(word)
+        else:
+            logging.error('Field Password not found')
 
     def click_login_button(self):
-        logging.info("Click login button")
-        self.find_element(TestSearchLocators.LOCATOR_LOGIN_BTN).click()
+        logging.debug("Click login button")
+        btn = self.find_element(TestSearchLocators.ids['LOCATOR_LOGIN_BTN'])
+        if btn:
+            btn.click()
+        else:
+            logging.error('Button Login not found')
 
     def get_error_text(self):
-        error_field = self.find_element(TestSearchLocators.LOCATOR_ERROR_FIELD, time=3)
-        text = error_field.text
-        logging.info(f"We find '{text}' in error field {TestSearchLocators.LOCATOR_ERROR_FIELD[1]}")
-        return text
+        error_field = self.find_element(TestSearchLocators.ids['LOCATOR_ERROR_FIELD'], time=3)
+        if error_field:
+            text = error_field.text
+            logging.debug(f"We find '{text}' in error field {TestSearchLocators.ids['LOCATOR_ERROR_FIELD']}")
+            return text
+        else:
+            logging.error('Error text not found')
+            return None
 
     def get_header_text(self):
-        header_field = self.find_element(TestSearchLocators.LOCATOR_HEADER_LABEL, time=3)
-        text = header_field.text
-        logging.info(f"We find '{text}' in error field {TestSearchLocators.LOCATOR_HEADER_LABEL[1]}")
-        return text
+        header_field = self.find_element(TestSearchLocators.ids['LOCATOR_HEADER_LABEL'], time=3)
+        if header_field:
+            text = header_field.text
+            logging.debug(f"We find '{text}' in error field {TestSearchLocators.ids['LOCATOR_HEADER_LABEL']}")
+            return text
+        else:
+            logging.error('Error Header not found')
+            return None
 
     def click_new_post_button(self):
-        logging.info("Click new post button")
-        self.find_element(TestSearchLocators.LOCATOR_NEW_POST_BTN).click()
+        logging.debug("Click new post button")
+        btn = self.find_element(TestSearchLocators.ids['LOCATOR_NEW_POST_BTN'])
+        if btn:
+            btn.click()
+        else:
+            logging.error('Error click new post button')
 
     def enter_title(self, word):
-        logging.info(f"Send {word} to element {TestSearchLocators.LOCATOR_TITLE[1]}")
-        login_field = self.find_element(TestSearchLocators.LOCATOR_TITLE)
-        login_field.clear()
-        login_field.send_keys(word)
+        logging.debug(f"Send {word} to element {TestSearchLocators.ids['LOCATOR_TITLE']}")
+        title_field = self.find_element(TestSearchLocators.ids['LOCATOR_TITLE'])
+        if title_field:
+            title_field.clear()
+            title_field.send_keys(word)
+        else:
+            logging.error('Field Title not found')
 
     def enter_description(self, word):
-        logging.info(f"Send {word} to element {TestSearchLocators.LOCATOR_DESCRIPTION[1]}")
-        login_field = self.find_element(TestSearchLocators.LOCATOR_DESCRIPTION)
-        login_field.clear()
-        login_field.send_keys(word)
+        logging.debug(f"Send {word} to element {TestSearchLocators.ids['LOCATOR_DESCRIPTION']}")
+        description_field = self.find_element(TestSearchLocators.ids['LOCATOR_DESCRIPTION'])
+        if description_field:
+            description_field.clear()
+            description_field.send_keys(word)
+        else:
+            logging.error('Field Description not found')
 
     def enter_content(self, word):
-        logging.info(f"Send {word} to element {TestSearchLocators.LOCATOR_CONTENT[1]}")
-        login_field = self.find_element(TestSearchLocators.LOCATOR_CONTENT)
-        login_field.clear()
-        login_field.send_keys(word)
+        logging.debug(f"Send {word} to element {TestSearchLocators.ids['LOCATOR_CONTENT']}")
+        content_field = self.find_element(TestSearchLocators.ids['LOCATOR_CONTENT'])
+        if content_field:
+            content_field.clear()
+            content_field.send_keys(word)
+        else:
+            logging.error('Field Content not found')
 
     def click_save_post_button(self):
-        logging.info("Click save post button")
-        self.find_element(TestSearchLocators.LOCATOR_SAVE_POST_BTN).click()
+        logging.debug("Click save post button")
+        btn = self.find_element(TestSearchLocators.ids['LOCATOR_SAVE_POST_BTN'])
+        if btn:
+            btn.click()
+        else:
+            logging.error('Error click save post button')
 
     def get_post_header_text(self):
-        header_field = self.find_element(TestSearchLocators.LOCATOR_HEADER_FIELD, time=3)
-        text = header_field.text
-        logging.info(f"We find '{text}' in error field {TestSearchLocators.LOCATOR_HEADER_FIELD[1]}")
-        return text
+        header_field = self.find_element(TestSearchLocators.ids['LOCATOR_HEADER_FIELD'], time=3)
+        if header_field:
+            text = header_field.text
+            logging.debug(f"We find '{text}' in error field {TestSearchLocators.ids['LOCATOR_HEADER_FIELD']}")
+            return text
+        else:
+            logging.error('Error Post header not found')
+            return None
 
     def click_contact_us_button(self):
-        logging.info("Click contact us button")
-        self.find_element(TestSearchLocators.LOCATOR_CONTACT_US).click()
+        logging.debug("Click contact us button")
+        btn = self.find_element(TestSearchLocators.ids['LOCATOR_CONTACT_US'])
+        if btn:
+            btn.click()
+        else:
+            logging.error('Error. Button Contact Us not found')
 
     def enter_your_name(self, word):
-        logging.info(f"Enter {word} in field {TestSearchLocators.LOCATOR_YOUR_NAME[1]}")
-        login_field = self.find_element(TestSearchLocators.LOCATOR_YOUR_NAME)
-        login_field.clear()
-        login_field.send_keys(word)
+        logging.debug(f"Enter {word} in field {TestSearchLocators.ids['LOCATOR_YOUR_NAME']}")
+        your_name_field = self.find_element(TestSearchLocators.ids['LOCATOR_YOUR_NAME'])
+        if your_name_field:
+            your_name_field.clear()
+            your_name_field.send_keys(word)
+        else:
+            logging.error('Field Your Name not found')
 
     def enter_your_email(self, word):
-        logging.info(f"Enter {word} in field {TestSearchLocators.LOCATOR_YOUR_EMAIL[1]}")
-        login_field = self.find_element(TestSearchLocators.LOCATOR_YOUR_EMAIL)
-        login_field.clear()
-        login_field.send_keys(word)
+        logging.debug(f"Enter {word} in field {TestSearchLocators.ids['LOCATOR_YOUR_EMAIL']}")
+        your_email_field = self.find_element(TestSearchLocators.ids['LOCATOR_YOUR_EMAIL'])
+        if your_email_field:
+            your_email_field.clear()
+            your_email_field.send_keys(word)
+        else:
+            logging.error('Field Your Email not found')
 
     def enter_your_content(self, word):
-        logging.info(f"Enter {word} in field {TestSearchLocators.LOCATOR_YOUR_CONTENT[1]}")
-        login_field = self.find_element(TestSearchLocators.LOCATOR_YOUR_CONTENT)
-        login_field.clear()
-        login_field.send_keys(word)
+        logging.debug(f"Enter {word} in field {TestSearchLocators.ids['LOCATOR_YOUR_CONTENT']}")
+        your_content_field = self.find_element(TestSearchLocators.ids['LOCATOR_YOUR_CONTENT'])
+        if your_content_field:
+            your_content_field.clear()
+            your_content_field.send_keys(word)
+        else:
+            logging.error('Field Your Content not found')
 
     def click_send_contact_us_button(self):
-        logging.info("Click send contact us button")
-        self.find_element(TestSearchLocators.LOCATOR_CONTACT_US_BTN).click()
+        logging.debug("Click send contact us button")
+        btn = self.find_element(TestSearchLocators.ids['LOCATOR_CONTACT_US_BTN'])
+        if btn:
+            btn.click()
+        else:
+            logging.error('Button Send contact us not found')
 
     def get_alert_text(self):
-        text = self.driver.switch_to.alert.text
-        logging.info(f"We find '{text}' in alert field")
-        return text
+        try:
+            text = self.driver.switch_to.alert.text
+            logging.debug(f"We find '{text}' in alert field")
+            return text
+        except:
+            logging.error('Error. Text Alert not found')
+            return None

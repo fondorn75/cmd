@@ -1,19 +1,6 @@
-2023-13-05/30/23 16:13:39 INFO ====== WebDriver manager ======
-2023-13-05/30/23 16:13:40 INFO Driver [C:\Users\dobrin.adm\.wdm\drivers\chromedriver\win32\113.0.5672.63\chromedriver.exe] found in cache
-2023-13-05/30/23 16:13:41 INFO Test 1 Starting
-2023-13-05/30/23 16:13:42 INFO Send test to element //*[@id="login"]/div[1]/label/input
-2023-13-05/30/23 16:13:43 INFO Send test to element //*[@id="login"]/div[2]/label/input
-2023-13-05/30/23 16:13:43 INFO Click login button
-2023-13-05/30/23 16:13:44 INFO We find '401' in error field //*[@id="app"]/main/div/div/div[2]/h2
-2023-13-05/30/23 16:13:44 INFO Test 2 Starting
-2023-13-05/30/23 16:13:44 INFO Send userapi0 to element //*[@id="login"]/div[1]/label/input
-2023-13-05/30/23 16:13:44 INFO Send ab2dcf5f0d to element //*[@id="login"]/div[2]/label/input
-2023-13-05/30/23 16:13:44 INFO Click login button
-2023-13-05/30/23 16:13:46 INFO We find 'Hello, userapi0' in error field //*[@id="app"]/main/nav/ul/li[3]/a
-2023-13-05/30/23 16:13:46 INFO Test 4 Starting
-2023-13-05/30/23 16:13:46 INFO Click contact us button
-2023-13-05/30/23 16:13:46 INFO Enter dmitrii in field //*[@id="contact"]/div[1]/label/input
-2023-13-05/30/23 16:13:47 INFO Enter test@mail.ru in field //*[@id="contact"]/div[2]/label/input
-2023-13-05/30/23 16:13:47 INFO Enter Verification email for support in field //*[@id="contact"]/div[3]/label/span/textarea
-2023-13-05/30/23 16:13:47 INFO Click send contact us button
-2023-13-05/30/23 16:13:50 INFO We find 'Form successfully submitted' in alert field
+2023-35-06/01/23 18:35:27 INFO ====== WebDriver manager ======
+2023-35-06/01/23 18:35:27 INFO Driver [C:\Users\dobrin.adm\.wdm\drivers\chromedriver\win32\113.0.5672.63\chromedriver.exe] found in cache
+2023-35-06/01/23 18:35:28 INFO Test 1 Starting
+2023-35-06/01/23 18:35:31 INFO Test 2 Starting
+2023-35-06/01/23 18:35:33 INFO Test 3 Starting
+2023-35-06/01/23 18:35:37 INFO Test 4 Starting
