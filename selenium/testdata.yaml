@@ -10,4 +10,7 @@ content: 'New post for pytest in python'
 your_name: dmitrii
 your_email: test@mail.ru
 your_content: 'Verification email for support'
+url: "https://test-stand.gb.ru/gateway/login"
+posts: "https://test-stand.gb.ru/api/posts"
+
 

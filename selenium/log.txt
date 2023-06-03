@@ -1,6 +1,4 @@
-2023-35-06/01/23 18:35:27 INFO ====== WebDriver manager ======
-2023-35-06/01/23 18:35:27 INFO Driver [C:\Users\dobrin.adm\.wdm\drivers\chromedriver\win32\113.0.5672.63\chromedriver.exe] found in cache
-2023-35-06/01/23 18:35:28 INFO Test 1 Starting
-2023-35-06/01/23 18:35:31 INFO Test 2 Starting
-2023-35-06/01/23 18:35:33 INFO Test 3 Starting
-2023-35-06/01/23 18:35:37 INFO Test 4 Starting
+2023-26-06/03/23 16:26:39 INFO ====== WebDriver manager ======
+2023-26-06/03/23 16:26:40 INFO Driver [C:\Users\Ikeda\.wdm\drivers\chromedriver\win32\114.0.5735.90\chromedriver.exe] found in cache
+2023-26-06/03/23 16:26:42 INFO Start API test 1
+2023-26-06/03/23 16:26:43 INFO Start API test 2

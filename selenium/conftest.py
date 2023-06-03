@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
+import requests
 
 with open("testdata.yaml") as f:
     testdata = yaml.safe_load(f)
@@ -44,3 +45,19 @@ def browser():
     yield driver
     driver.quit()
 
+
+@pytest.fixture()
+def search_text():
+    return 'test_test_test_test_test_test_test_test_'
+
+
+@pytest.fixture()
+def description():
+    return 'New post for pytest in python'
+
+
+@pytest.fixture()
+def login():
+    response = requests.post(testdata['url'], data={'username': testdata['username'], 'password': testdata['password']})
+    response.encoding = 'utf-8'
+    return response.json()['token']

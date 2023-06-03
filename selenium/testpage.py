@@ -2,9 +2,13 @@ from BaseApp import BasePage
 from selenium.webdriver.common.by import By
 import logging
 import yaml
+import requests
 
 with open("locators.yaml") as f:
     locators = yaml.safe_load(f)
+
+with open("testdata.yaml") as f2:
+    user_set = yaml.safe_load(f2)
 
 
 class TestSearchLocators:
@@ -165,4 +169,38 @@ class OperationsHelper(BasePage):
             return text
         except:
             logging.error('Error. Text Alert not found')
+            return None
+
+    def get_not_me_posts(self, token):
+        try:
+            response = requests.get(user_set['posts'], headers={'X-Auth-Token': token}, params={'owner': 'notMe', 'page': 1})
+            listTitle = []
+            for i in response.json()['data']:
+                listTitle.append(i['title'])
+            return listTitle
+        except:
+            logging.error('Dont get list not me posts')
+            return None
+
+    def create_new_post(self, token):
+        try:
+            response = requests.post(user_set['posts'], headers={'X-Auth-Token': token},
+                                     params={'title': user_set['title'],
+                                             'description': user_set['description'],
+                                             'content': user_set['content']})
+            response.encoding = 'utf-8'
+            return response.json()
+        except:
+            logging.error('Error. Dont create new post')
+            return None
+
+    def get_my_posts(self, token):
+        try:
+            response = requests.get(user_set['posts'], headers={'X-Auth-Token': token})
+            listDescription = []
+            for i in response.json()['data']:
+                listDescription.append(i['description'])
+            return listDescription
+        except:
+            logging.error('Error. Dont get list my posts')
             return None
