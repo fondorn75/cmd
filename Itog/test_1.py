@@ -20,5 +20,11 @@ def test_step1(browser, answer_code):
     assert field == answer_code
 
 
+def test_step2(browser, answer_code2):
+    logging.info("Test 2 Starting")
+    test_page = OperationsHelper(browser)
+    assert test_page.get_answer_from_nikto(testdata['cmd'], answer_code2)
+
+
 
 

@@ -2,7 +2,7 @@ from BaseApp import BasePage
 from selenium.webdriver.common.by import By
 import logging
 import yaml
-import requests
+import subprocess
 
 with open("locators.yaml") as f:
     locators = yaml.safe_load(f)
@@ -63,3 +63,13 @@ class OperationsHelper(BasePage):
         else:
             logging.error('Error header about page not found')
             return None
+
+    def get_answer_from_nikto(self, cmd, answer):
+        result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, encoding='utf-8')
+        out = result.stdout
+        if answer in out:
+            return True
+        else:
+            logging.error('Error. site dont return code')
+            return False
+

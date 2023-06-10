@@ -1,3 +1,4 @@
-2023-24-06/06/23 11:24:26 INFO ====== WebDriver manager ======
-2023-24-06/06/23 11:24:27 INFO Driver [C:\Users\dobrin.adm\.wdm\drivers\chromedriver\win32\113.0.5672.63\chromedriver.exe] found in cache
-2023-24-06/06/23 11:24:28 INFO Test 1 Starting
+2023-24-06/10/23 16:24:59 INFO ====== WebDriver manager ======
+2023-24-06/10/23 16:24:59 INFO Driver [/home/user/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver] found in cache
+2023-25-06/10/23 16:25:01 INFO Test 1 Starting
+2023-25-06/10/23 16:25:09 INFO Test 2 Starting

@@ -1,5 +1,7 @@
 sleep_time: 3
 username: userapi0
 password: ab2dcf5f0d
+cmd: 'nikto -h https://test-stand.gb.ru/ -ssl -Tuning 4'
+
 
 

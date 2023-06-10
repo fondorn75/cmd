@@ -18,4 +18,9 @@ def answer_code():
     return "32px"
 
 
+@pytest.fixture()
+def answer_code2():
+    return '0 error(s)'
+
+
 
