@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 import logging
 import yaml
 import subprocess
+import requests
 
 with open("locators.yaml") as f:
     locators = yaml.safe_load(f)
@@ -73,3 +74,6 @@ class OperationsHelper(BasePage):
             logging.error('Error. site dont return code')
             return False
 
+    def get_user_profile(self, token):
+        response = requests.get(f"{user_set['users']}/{user_set['id']}", headers={'X-Auth-Token': token})
+        return response.json()['userName']

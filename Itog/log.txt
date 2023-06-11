@@ -1,4 +1,5 @@
-2023-24-06/10/23 16:24:59 INFO ====== WebDriver manager ======
-2023-24-06/10/23 16:24:59 INFO Driver [/home/user/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver] found in cache
-2023-25-06/10/23 16:25:01 INFO Test 1 Starting
-2023-25-06/10/23 16:25:09 INFO Test 2 Starting
+2023-58-06/11/23 16:58:29 INFO ====== WebDriver manager ======
+2023-58-06/11/23 16:58:29 INFO Driver [/home/user/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver] found in cache
+2023-58-06/11/23 16:58:31 INFO Test 1 Starting
+2023-58-06/11/23 16:58:39 INFO Test 2 Starting
+2023-59-06/11/23 16:59:38 INFO Test 3 Starting

@@ -26,5 +26,8 @@ def test_step2(browser, answer_code2):
     assert test_page.get_answer_from_nikto(testdata['cmd'], answer_code2)
 
 
-
+def test_step3(browser, login):
+    logging.info("Test 3 Starting")
+    test_page = OperationsHelper(browser)
+    assert testdata['username'] == test_page.get_user_profile(login)
 
