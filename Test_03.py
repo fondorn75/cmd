@@ -30,3 +30,6 @@ def my_posts(token):
 def test_step3(login, description):
     new_post(login)
     assert description in my_posts(login)
+
+
+
